@@ -131,12 +131,13 @@ def read_light_tree():
 # Define function for exporting an OBJ from a map cell
 def export_obj(map_cell):
     count = 0
+    
     # Export Cell Materials at .mtl Files
     materialLines = []
     for tex in map_cell["texture_list"]:
         materialLines.append("newmtl " + tex.split("\\")[-1].split('.')[0])
         materialLines.append("Kd 1.000 1.000 1.000")
-        materialLines.append(f"map_Kd ..\\{tex}")
+        materialLines.append(f"map_Kd {tex}")
 
     with open(OBJ_EXPORT_PATH + str(loaded_map) + '\\c' + str(i) + '.mtl', 'w') as f:
         for line in materialLines:
@@ -208,8 +209,8 @@ def export_obj(map_cell):
 
             #f.write("mtllib " + tex.split('\\')[-1].split('.')[0] + ".mtl\n")
             f.write("usemtl " + tex.split('\\')[-1].split('.')[0] + "\n")
-            #f.write("o " + tex.split('\\')[-1].split('.')[0] + "\n")
-            f.write("g " + tex.split('\\')[-1].split('.')[0] + "\n")
+            f.write("o " + tex.split('\\')[-1].split('.')[0] + "\n")
+            f.write(" g " + tex.split('\\')[-1].split('.')[0] + "\n")
 
             # Write the faces
             for k in range(face_count):
