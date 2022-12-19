@@ -1,1 +1,5 @@
 LocaleLoader/map_data_*
+texture/
+*.obj
+*.mtl
+*.zip
